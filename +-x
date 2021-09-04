@@ -1,0 +1,77 @@
+import random
+
+count = 0
+right = 0
+
+a = random.randint(1,9)
+b = random.randint(1,9)
+if(a > b):
+	c = a
+	a = b
+	b = c
+
+while(count < 100):
+	count += 1
+	if(random.randint(0,1) == 0):
+		#plus/minus
+		if(random.randint(0,1) == 0):
+			#plus
+			ans = input(str(a)+"+"+str(b)+"=")
+			while(not ans.isdigit()):
+				ans = input(str(a)+"+"+str(b)+"=")
+			ans = int(ans)
+			if(ans == (a+b)):
+				print('correct!')
+				right += 1
+			else:
+				print('wrong!'+str(a)+"+"+str(b)+"="+str(a+b))
+		else:
+			#minus
+			ans = input(str(b)+"-"+str(a)+"=")
+			while(not ans.isdigit()):
+				ans = input(str(b)+"-"+str(a)+"=")
+			ans = int(ans)
+			if(ans == (b-a)):
+				print('correct!')
+				right += 1
+			else:
+				print('wrong!'+str(b)+"-"+str(a)+"="+str(b-a))
+	else:
+		if(random.randint(0,1) == 0):
+			#times
+			ans = input(str(a)+"x"+str(b)+"=")
+			while(not ans.isdigit()):
+				ans = input(str(a)+"x"+str(b)+"=")
+			ans = int(ans)
+			if(ans == (a*b)):
+				print('correct!')
+				right += 1
+			else:
+				print('wrong!'+str(a)+"x"+str(b)+"="+str(a*b))
+		else:
+			#divide
+			while(b%a != 0):
+				a = random.randint(1,9)
+				b = random.randint(1,9)	
+				if(a > b):
+					c = a
+					a = b
+					b = c
+				
+			ans = input(str(b)+chr(247)+str(a)+"=")
+			while(not ans.isdigit()):
+				ans = input(str(b)+chr(247)+str(a)+"=")
+			ans = int(ans)
+			if(ans == (b/a)):
+				print('correct!')
+				right += 1
+			else:
+				print('wrong!'+str(b)+chr(247)+str(a)+"="+str(b/a))
+	
+	a = random.randint(1,9)
+	b = random.randint(1,9)	
+	if(a > b):
+		c = a
+		a = b
+		b = c
+print(str(right/count*100)+'% correct!')
